@@ -22,15 +22,6 @@ The result format is in the following example.
 import pandas as pd
 
 def largest_orders(orders: pd.DataFrame) -> pd.DataFrame:
-    # Get the counts of orders for each customer
-    counts = orders['customer_number'].value_counts()
-    
-    # Handle the case of an empty input DataFrame
-    if counts.empty:
-        return pd.DataFrame({'customer_number': []})
-    
-    # .idxmax() returns the index label (the customer_number) of the max value
-    top_customer = counts.idxmax()
-    
-    # Return the result in the required DataFrame format
-    return pd.DataFrame({'customer_number': [top_customer]})
+    orders_count = orders['customer_number'].value_counts()
+    largest_customer = orders_count[orders_count == orders['customer_number'].value_counts().max()]
+    return largest_customer.reset_index()[['customer_number']]
