@@ -41,5 +41,5 @@ Explanation: a@b.com is repeated two times.
 import pandas as pd
 
 def duplicate_emails(person: pd.DataFrame) -> pd.DataFrame:
-    result = person[person.duplicated(subset=['email'])][['email']].rename(columns={'email': 'Email'})
-    return result
+    unique_duplicated_emails = person[person.duplicated(subset=['email'], keep=False)]['email'].unique()
+    return pd.DataFrame(unique_duplicated_emails, columns=['Email'])
