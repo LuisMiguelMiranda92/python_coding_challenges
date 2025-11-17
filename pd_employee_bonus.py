@@ -36,5 +36,5 @@ import pandas as pd
 
 def employee_bonus(employee: pd.DataFrame, bonus: pd.DataFrame) -> pd.DataFrame:
     merged_df = pd.merge(employee, bonus, how='left', on='empId')
-    bonus_mask = (merged_df['bonus'] <= 1000) | (merged_df['bonus'].isnull())
+    bonus_mask = (merged_df['bonus'] <= 1000) | (merged_df['bonus'].isna())
     return merged_df[bonus_mask][['name', 'bonus']]

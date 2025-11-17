@@ -23,5 +23,5 @@ The result format is in the following example.
 import pandas as pd
 
 def find_customer_referee(customer: pd.DataFrame) -> pd.DataFrame:
-    bonus_mask = (customer['referee_id'] != 2) | (customer['referee_id'].isnull())
+    bonus_mask = (customer['referee_id'] != 2) | (customer['referee_id'].isna())
     return customer[bonus_mask][['name']]
