@@ -20,8 +20,5 @@ Return the result table in any order.
 import pandas as pd
 
 def find_products(products: pd.DataFrame) -> pd.DataFrame:
-    low_fats_mask = products['low_fats'] == 'Y'
-    recyclable_mask = products['recyclable'] == 'Y'
-    combined_mask = low_fats_mask & recyclable_mask
-    products = products[combined_mask]
-    return products[['product_id']]
+    low_fat_recyclable_mask = (products['low_fats'] == 'Y') & (products['recyclable'] == 'Y')
+    return products[low_fat_recyclable_mask][['product_id']]
