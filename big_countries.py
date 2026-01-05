@@ -23,9 +23,5 @@ Return the result table in any order.
 import pandas as pd
 
 def big_countries(world: pd.DataFrame) -> pd.DataFrame:
-    
-    area_mask = world['area'] >= 3000000
-    pop_mask = world['population'] >= 25000000
-    combined_mask = area_mask | pop_mask
-    world = world[combined_mask]
-    return world[['name', 'population', 'area']]
+    big_country_mask = (world['area'] >= 3000000) | (world['population'] >=  25000000)
+    return world[big_country_mask][['name', 'population', 'area']]
