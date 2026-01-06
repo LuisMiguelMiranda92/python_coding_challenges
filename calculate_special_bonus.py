@@ -17,9 +17,5 @@ Return the result table ordered by employee_id.
 import pandas as pd
 
 def calculate_special_bonus(employees: pd.DataFrame) -> pd.DataFrame:
-    bonus_mask1 = employees['employee_id'] % 2 != 0
-    bonus_mask2 = ~employees['name'].str.startswith('M')
-    combined_mask = bonus_mask1 & bonus_mask2
-    employees['bonus'] = 0
-    employees.loc[combined_mask, 'bonus'] = employees['salary']
+    employees['bonus'] = np.where(((employees['employee_id'] % 2!= 0) & (~employees['name'].str.startswith('M'))), employees['salary'], 0)
     return employees[['employee_id', 'bonus']].sort_values(by='employee_id')

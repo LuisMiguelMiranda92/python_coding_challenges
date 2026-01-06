@@ -17,5 +17,5 @@ Return the result table in any order.
 import pandas as pd
 
 def invalid_tweets(tweets: pd.DataFrame) -> pd.DataFrame:
-    tweets_mask = tweets[tweets['content'].str.len() > 15]
-    return tweets_mask[['tweet_id']]
+    invalid_tweet_mask = tweets['content'].str.len() > 15
+    return tweets[invalid_tweet_mask][['tweet_id']]

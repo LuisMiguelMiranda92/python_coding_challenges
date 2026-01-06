@@ -18,9 +18,8 @@ Return the result table sorted by id in ascending order.
 
 The result format is in the following example.
 """
-
 import pandas as pd
 
 def article_views(views: pd.DataFrame) -> pd.DataFrame:
-    own_view = views[views['author_id'] == views['viewer_id']]
-    return own_view[['author_id']].drop_duplicates().rename(columns={'author_id':'id'}).sort_values(by='id')
+    view_is_own_article_mask = views['author_id'] == views['viewer_id']
+    return views[view_is_own_article_mask][['author_id']].rename(columns={'author_id': 'id'}).drop_duplicates().sort_values(by='id')
