@@ -13,17 +13,13 @@ Table: Activity
 This table shows the activity of players of some games.
 Each row is a record of a player who logged in and played a number of games (possibly 0) before logging out on someday using some device.
  
-
 Write a solution to find the first login date for each player.
 
 Return the result table in any order.
 
 The result format is in the following example.
-
- 
 """
 import pandas as pd
 
 def game_analysis(activity: pd.DataFrame) -> pd.DataFrame:
-    df = activity.groupby('player_id')[['player_id', 'event_date']].min().rename(columns={'event_date': 'first_login'})
-    return df
+    return activity.groupby('player_id')['event_date'].min().reset_index().rename(columns={'event_date': 'first_login'})

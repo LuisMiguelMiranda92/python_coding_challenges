@@ -16,6 +16,4 @@ Return the result table in any order.
 import pandas as pd
 
 def count_unique_subjects(teacher: pd.DataFrame) -> pd.DataFrame:
-    subject_counts = teacher.groupby('teacher_id')['subject_id'].nunique()
-    result_df = subject_counts.reset_index(name='cnt')
-    return result_df
+    return teacher.groupby('teacher_id')['subject_id'].nunique().reset_index().rename(columns={'subject_id': 'cnt'})

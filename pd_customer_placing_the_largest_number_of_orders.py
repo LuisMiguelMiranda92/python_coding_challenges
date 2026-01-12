@@ -22,6 +22,6 @@ The result format is in the following example.
 import pandas as pd
 
 def largest_orders(orders: pd.DataFrame) -> pd.DataFrame:
-    orders_count = orders['customer_number'].value_counts()
-    largest_customer = orders_count[orders_count == orders['customer_number'].value_counts().max()]
-    return largest_customer.reset_index()[['customer_number']]
+    order_count = orders['customer_number'].value_counts()
+    best_customer = order_count.head(1).reset_index()
+    return best_customer[['customer_number']]
